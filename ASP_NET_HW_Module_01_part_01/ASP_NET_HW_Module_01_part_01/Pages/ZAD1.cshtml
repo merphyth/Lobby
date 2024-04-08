@@ -1,0 +1,23 @@
+﻿@page
+@using ASP_NET_HW_Module_01_part_01.Pages;
+@model ASP_NET_HW_Module_01_part_01.Pages.ZAD1Model
+@{
+	ViewData["Title"] = "Exercise #1";
+}
+@functions
+{
+    public DateTime GetDate()
+    {
+        DateTime today = DateTime.Today;
+        return today;
+    }
+    public int GetDay()
+    {
+        DateTime today = DateTime.Today;
+        return today.DayOfYear;
+    }
+}
+
+<p>Today is @GetDate().ToString("dd-MM-yyyy")</p>
+<br>
+<p style="color:red">It is @(GetDay().ToString())th day in a year!</p>

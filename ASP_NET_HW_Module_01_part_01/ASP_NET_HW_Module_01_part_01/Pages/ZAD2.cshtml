@@ -1,0 +1,26 @@
+﻿@page
+@model ASP_NET_HW_Module_01_part_01.Pages.ZAD2Model
+@{
+	ViewData["Title"] = "Exercise #2";
+	int randomNumber = GetRandom();
+}
+
+@functions
+{
+	int GetRandom()
+	{
+		Random random = new Random();
+		int asd = random.Next(1,26);
+		return asd;
+	}
+	static char GetLetter(int position)
+	{
+		char[] Letters = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
+							'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' };
+		char letter = Letters[position-1];
+		return letter;
+	}
+}
+
+<p>Aaaand you got number @(randomNumber), lets see what letter stands on that position...</p>
+<p>Its @(GetLetter(randomNumber))!</p>
