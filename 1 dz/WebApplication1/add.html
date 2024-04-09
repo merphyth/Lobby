@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>add car</title>
+</head>
+<style>
+
+    .marginmargin {
+        margin: 0;
+    }
+</style>
+<body>
+    <p style="font-size: 30px">Add new car<p>
+    <p class="marginmargin"><strong>Car max speed</strong></p>
+    <input id="carmaxspeed" oninput="OnlyDigits()" type="text">
+    <p class="marginmargin"><strong>Car Model</strong></p>
+    <input id="carmodel" type="text">
+    <p class="marginmargin"><strong>Write someting about the car</strong></p>
+    <input id="cardescription" type="text">
+    <br>
+    <button style="width : 80px; height:20px" id="buttonapply" onclick="SendInfo()">
+        Apply
+    </button>
+    <script>
+
+        function SendInfo() {
+            var maxspeedinput = document.getElementById("carmaxspeed");
+            var modelinput = document.getElementById("carmodel");
+            var descriptioninput = document.getElementById("cardescription");
+
+            var car =
+            {
+                maxspeed: maxspeedinput.value,
+                model: modelinput.value,
+                description: descriptioninput.value
+            };
+            fetch('https://localhost:7254/api/cars',
+                {
+                    method: 'POST',
+                    headers:
+                    {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(car)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('All good', data)
+                })
+                .catch((error) => {
+                    console.error('Error:', error)
+                })
+        }
+        function OnlyDigits() {
+            let inputElement = document.getElementById('carmaxspeed');
+            let inputValue = inputElement.value;
+            let lastChar = inputValue.slice(-1);
+            if (isNaN(parseInt(lastChar))) {
+                inputElement.value = inputValue.slice(0, -1);
+            }
+        }
+    </script>
+</body>
+</html>
