@@ -1,0 +1,27 @@
+﻿@page
+@model WebApplication1.Pages.Shared._1Model
+@{
+}
+<body>
+    <form id="myForm">
+		<input type = "text" name="email">
+		<br>
+        <input type="checkbox" id="subscribeCheckbox" value="Subscribe">
+		<label for="checkboxx">Subscribe</label>
+		<br>
+		<button type="submit" class="btn btn-cta">View Inventory</button>
+	</form>
+</body>
+<script>
+    document.getElementById("myForm").addEventListener("submit", function (event) {
+        event.preventDefault(); 
+
+        var checkbox = document.getElementById("subscribeCheckbox");
+        if (checkbox.checked) {
+            window.location.href = "1dot1.cshtml";
+        } else 
+        {
+            window.location.reload();
+        }
+    });
+</script>
